@@ -1,8 +1,14 @@
 import jwt
 import datetime
 import os
+from pathlib import Path
 
-SECRET = os.getenv("JWT_SECRET")
+from dotenv import load_dotenv
+
+ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(ENV_PATH)
+
+SECRET = os.getenv("JWT_SECRET") or os.getenv("SECRET_KEY")
 
 def generate_token(email, role):
     payload = {

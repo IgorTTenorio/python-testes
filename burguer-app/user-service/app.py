@@ -2,8 +2,9 @@ from flask import Flask
 from controllers.user_controller import user_bp
 from dotenv import load_dotenv
 import os
+from pathlib import Path
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent / ".env")
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")

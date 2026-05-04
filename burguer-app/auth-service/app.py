@@ -2,20 +2,14 @@ from flask import Flask, session
 from controllers.auth_controller import auth_bp
 from dotenv import load_dotenv
 from flask import redirect, url_for
+from pathlib import Path
 
 import os
 
-# Carrega as variáveis de ambiente do arquivo .env
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent / ".env")
 
 # Cria a instância da aplicação Flask
 app = Flask(__name__)
-
-secret_key = os.getenv("SECRET_KEY")
-
-print(f"SECRET_KEY carregada: {secret_key}")  # DEBUG: deve imprimir o valor correto
-
-
 
 #Define a chave secreta para a sessão
 app.secret_key = os.getenv("SECRET_KEY")
